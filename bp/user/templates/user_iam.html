@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% set light = '#f8f9fa' %}
+    {% include 'header.html' %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopy!</title>
+    <link rel="stylesheet" href="{{ url_for('user_bp.static', filename='index.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="bg-light">
+    {% block header %}{% endblock %}
+
+    <div class="container mt-5">
+        {% if isExist %}
+        <div class="card">
+            <div class="card-body">
+                <div style="justify-content: space-between;">
+                    <h2 class="card-title">
+                            {{isExist.username}}
+                    </h2>
+                    <div style="justify-content: space-between;">
+                        <p>{{isExist.date}}</p>
+                        <p>{{summRating}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        {% if production %}
+                        {% for product in production %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="row card-title m-2"><b>{{product.name}}</b></h5>
+                                <p class="row card-text m-2">
+                                    {{product.description[:100]}}
+                                </p>
+                                <div class="subfluid card-columns row m-2">
+                                    <form method="get">
+                                        <a href="{{ url_for('shop_bp.shop_product', id=product.id) }}">
+                                            <button type="button" class="btn btn-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
+                                                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                                                    <path
+                                                        d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                                                        fill="{{light}}" />
+                                                </svg>
+                                            </button>
+                                        </a>
+                                        <a>
+                                            <button type="submit" name="act" value="add_wishlist!{{product.id}}" class="btn btn-dark">
+                                                <svg fill="{{light}}" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg>
+                                            </button>
+                                        </a>
+                                        <a>
+                                            <button type="submit" name="act"
+                                                value="remove_product!{{product.id}}" class="btn btn-danger">
+                                                <svg fill="{{light}}" xmlns="http://www.w3.org/2000/svg" height="16"
+                                                    width="14"
+                                                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                                                    <path
+                                                        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                                                </svg></button>
+                                            </a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="hr-invise">
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <h1>Please, log in or sign up</h1>
+        <a href="{{ url_for('main_bp.auth') }}">
+            <button class="btn btn-info">
+                Auth!
+            </button>
+        </a>
+        {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

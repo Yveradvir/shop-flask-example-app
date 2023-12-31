@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopy!</title>
+    <link rel="stylesheet" href="{{ url_for('main_bp.static', filename='index.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light">
+    <div class="container">
+        <h1 class="my-4">Embark on a Journey of Thoughtful Commerce!</h1>
+        <hr class="hr-line">
+            <p>Welcome to Shopy, where every click resonates with purpose. Here, your listings become stories, your orders turn into adventures, and managing your inventory is akin to conducting a symphony of products.</p>
+            <p>Just as a curator selects artworks for a gallery, you curate your offerings for the digital marketplace. Navigate through the aisles of possibilities, and let your products shine in this grand exposition of commerce.</p>
+            <p>Unleash your entrepreneurial spirit and let the rhythm of transactions create a melody of success. Shopy is not just a platform; it's a canvas for your business masterpiece.</p>
+            <p>So, list your treasures, embark on this commerce odyssey, and let Shopy be the stage where your business takes center spotlight.</p>
+            <hr class="hr-line">
+            <a href="{{url_for('shop_bp.shop_index')}}"><button class="btn btn-primary">I need a new look!</button></a>
+            <a href="{{url_for('shop_bp.shop_index')}}"><button class="btn btn-primary">I want a new book!</button></a>
+            <a href="{{url_for('shop_bp.shop_index')}}"><button class="btn btn-primary">I want to look at propositions!</button></a>
+            <hr class="hr-line">
+            <a href="{{url_for('main_bp.auth')}}"><button class="btn btn-primary">I need to register or sign up!</button></a>
+            {% if username %}
+            <a href="{{url_for('main_bp.auth')}}"><button class="btn btn-primary">Reregister or resignup</button></a>
+            <hr class="hr-line">
+            <form method="get">
+                <button type="submit" name="act" value="delete" class="btn btn-primary">Log out</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+
+* {
+    margin  : 0;
+    padding : 0;
+    
+    font-family: 'Rubik', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 12px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--light); 
+    border-radius: 8px; 
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--dark); 
+}
+
+
+:root {
+    --dark: #212529;
+    --light: #f8f9fa;
+}
+
+.btn-primary a {
+    color: var(--light) !important; /* White button text color */
+    text-decoration: none; /* Remove underline */
+}
+.hr-line {
+    border: 2px solid var(--dark);
+    border-radius: 2px;
+    color: var(--dark);
+}
+
+.hr-invise {
+    border: 2px solid transparent;
+    border-radius: 2px;
+    color: transparent;
+}
+
+.add-product-btn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    padding: 15px;
+    text-align: center;
+    align-items: center;
+}
+
+.subfluid {
+    justify-content: space-between;
+}
